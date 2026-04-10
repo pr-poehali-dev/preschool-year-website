@@ -218,10 +218,11 @@ export default function Index() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-orange-100">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">🌟</span>
-            <span className="font-montserrat font-bold text-sm md:text-base text-foreground leading-tight">
-              Год дошкольного<br className="md:hidden" /> образования
-            </span>
+            <img
+              src="https://cdn.poehali.dev/projects/df6590c4-d3de-4022-a0b8-c2a6433a84e6/bucket/24ba0be3-82b9-40bd-9623-7a55a0cd00d6.png"
+              alt="Год дошкольного образования"
+              className="h-10 md:h-12 w-auto object-contain"
+            />
           </div>
           <div className="hidden md:flex items-center gap-1">
             {NAV_ITEMS.map(item => (
@@ -500,8 +501,11 @@ export default function Index() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-2xl">🌟</span>
-                <span className="font-montserrat font-bold text-lg">Год дошкольного образования</span>
+                <img
+                  src="https://cdn.poehali.dev/projects/df6590c4-d3de-4022-a0b8-c2a6433a84e6/bucket/24ba0be3-82b9-40bd-9623-7a55a0cd00d6.png"
+                  alt="Год дошкольного образования"
+                  className="h-10 w-auto object-contain brightness-0 invert"
+                />
               </div>
               <p className="text-background/60 text-sm">© 2025 · Официальный информационный портал</p>
             </div>
