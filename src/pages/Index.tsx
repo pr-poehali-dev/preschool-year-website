@@ -13,7 +13,7 @@ const NAV_ITEMS = [
 const NEWS = [
   {
     id: 1,
-    date: "15 января 2025",
+    date: "15 января 2026",
     month: "Январь",
     tag: "Открытие",
     title: "Торжественное открытие Года дошкольного образования",
@@ -23,7 +23,7 @@ const NEWS = [
   },
   {
     id: 2,
-    date: "3 февраля 2025",
+    date: "3 февраля 2026",
     month: "Февраль",
     tag: "Форум",
     title: "Всероссийский педагогический форум дошкольников",
@@ -33,7 +33,7 @@ const NEWS = [
   },
   {
     id: 3,
-    date: "20 марта 2025",
+    date: "20 марта 2026",
     month: "Март",
     tag: "Акция",
     title: "Неделя «Читаем детям» по всей России",
@@ -43,7 +43,7 @@ const NEWS = [
   },
   {
     id: 4,
-    date: "12 апреля 2025",
+    date: "12 апреля 2026",
     month: "Апрель",
     tag: "Конференция",
     title: "Международная конференция по раннему развитию",
@@ -53,7 +53,7 @@ const NEWS = [
   },
   {
     id: 5,
-    date: "5 мая 2025",
+    date: "5 мая 2026",
     month: "Май",
     tag: "Праздник",
     title: "День защиты детей — главный праздник года",
@@ -63,7 +63,7 @@ const NEWS = [
   },
   {
     id: 6,
-    date: "18 июня 2025",
+    date: "18 июня 2026",
     month: "Июнь",
     tag: "Выставка",
     title: "Выставка детского творчества «Мир глазами ребёнка»",
@@ -82,7 +82,7 @@ const CONTESTS = [
     color: "bg-amber-400",
     textColor: "text-amber-700",
     bgLight: "bg-amber-50",
-    deadline: "Приём заявок: до 1 сентября 2025",
+    deadline: "Приём заявок: до 1 сентября 2026",
     nominations: ["Лучший воспитатель", "Инновационный подход", "Лучшая группа"],
   },
   {
@@ -93,7 +93,7 @@ const CONTESTS = [
     color: "bg-teal-400",
     textColor: "text-teal-700",
     bgLight: "bg-teal-50",
-    deadline: "Приём заявок: до 15 августа 2025",
+    deadline: "Приём заявок: до 15 августа 2026",
     nominations: ["Лучшая среда", "Инклюзия", "Цифровизация"],
   },
   {
@@ -115,7 +115,7 @@ const CONTESTS = [
     color: "bg-rose-400",
     textColor: "text-rose-700",
     bgLight: "bg-rose-50",
-    deadline: "Приём заявок: до 1 октября 2025",
+    deadline: "Приём заявок: до 1 октября 2026",
     nominations: ["Лучший семейный проект", "Активная семья"],
   },
 ];
@@ -457,7 +457,7 @@ export default function Index() {
           {/* Events for selected month */}
           <div className="bg-white rounded-3xl shadow-sm border border-border overflow-hidden">
             <div className="bg-gradient-to-r from-teal-400 to-cyan-400 px-6 py-4 flex items-center justify-between">
-              <h3 className="font-montserrat font-bold text-xl text-white">{activeMonth} 2025</h3>
+              <h3 className="font-montserrat font-bold text-xl text-white">{activeMonth} 2026</h3>
               <span className="bg-white/20 text-white text-sm px-3 py-1 rounded-full">
                 {CALENDAR_EVENTS[activeMonth]?.length} события
               </span>
