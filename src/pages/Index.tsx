@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMAGE = "https://cdn.poehali.dev/projects/df6590c4-d3de-4022-a0b8-c2a6433a84e6/bucket/ec0dcd0e-eb13-4e66-8d21-28bbee8b40a4.png";
@@ -8,6 +8,18 @@ const NAV_ITEMS = [
   { id: "news", label: "Новости и события" },
   { id: "contests", label: "Конкурсы и награды" },
   { id: "calendar", label: "Календарь" },
+  { id: "map", label: "Детские сады" },
+];
+
+const KINDERGARTENS = [
+  { name: "МБДОУ «Детский сад №1»", address: "ул. Советская, 54", phone: "+7 (4752) 72-11-11", coords: [52.7212, 41.4523] },
+  { name: "МБДОУ «Детский сад №3 «Берёзка»»", address: "ул. Карла Маркса, 18", phone: "+7 (4752) 72-22-33", coords: [52.7318, 41.4401] },
+  { name: "МБДОУ «Детский сад №7 «Радуга»»", address: "ул. Мичуринская, 112", phone: "+7 (4752) 47-31-12", coords: [52.7156, 41.4678] },
+  { name: "МБДОУ «Детский сад №12 «Солнышко»»", address: "ул. Рылеева, 67", phone: "+7 (4752) 53-44-21", coords: [52.7389, 41.4312] },
+  { name: "МБДОУ «Детский сад №15 «Ромашка»»", address: "ул. Пролетарская, 34", phone: "+7 (4752) 72-55-66", coords: [52.7267, 41.4589] },
+  { name: "МБДОУ «Детский сад №20 «Звёздочка»»", address: "ул. Чичканова, 89", phone: "+7 (4752) 47-88-99", coords: [52.7445, 41.4234] },
+  { name: "МБДОУ «Детский сад №25 «Теремок»»", address: "ул. Моршанское шоссе, 14", phone: "+7 (4752) 44-23-11", coords: [52.7534, 41.4156] },
+  { name: "МБДОУ «Детский сад №33 «Колобок»»", address: "ул. Базарная, 22", phone: "+7 (4752) 72-66-77", coords: [52.7198, 41.4445] },
 ];
 
 const NEWS = [
@@ -203,6 +215,45 @@ export default function Index() {
   const [activeSection, setActiveSection] = useState("home");
   const [activeMonth, setActiveMonth] = useState("Сентябрь");
   const [newsFilter, setNewsFilter] = useState("Все");
+  const [selectedKg, setSelectedKg] = useState<number | null>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ymapRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+    const init = () => {
+      if (ymapRef.current) return;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const ymaps = (window as any).ymaps;
+      if (!ymaps) return;
+      ymaps.ready(() => {
+        const map = new ymaps.Map(mapRef.current, {
+          center: [52.7212, 41.4523],
+          zoom: 13,
+          controls: ["zoomControl", "fullscreenControl"],
+        });
+        ymapRef.current = map;
+        KINDERGARTENS.forEach((kg, i) => {
+          const placemark = new ymaps.Placemark(
+            kg.coords,
+            { balloonContentHeader: kg.name, balloonContentBody: `<b>Адрес:</b> ${kg.address}<br/><b>Телефон:</b> ${kg.phone}` },
+            { preset: "islands#blueEducationIcon" }
+          );
+          placemark.events.add("click", () => setSelectedKg(i));
+          map.geoObjects.add(placemark);
+        });
+      });
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((window as any).ymaps) { init(); } else {
+      const interval = setInterval(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if ((window as any).ymaps) { clearInterval(interval); init(); }
+      }, 300);
+    }
+    return () => { ymapRef.current?.destroy(); ymapRef.current = null; };
+  }, []);
 
   const scrollTo = (id: string) => {
     setActiveSection(id);
@@ -496,6 +547,76 @@ export default function Index() {
         </div>
       </section>
 
+      {/* MAP */}
+      <section id="map" className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-600 rounded-full px-4 py-1.5 text-sm font-medium mb-4">
+              <Icon name="MapPin" size={16} />
+              Детские сады Тамбова
+            </div>
+            <h2 className="font-montserrat font-black text-3xl md:text-5xl text-foreground">
+              Найди <span className="text-blue-600">ближайший сад</span>
+            </h2>
+            <p className="text-muted-foreground mt-3 text-lg">Все муниципальные дошкольные учреждения города на карте</p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-6">
+            {/* Список */}
+            <div className="lg:col-span-1 space-y-2 max-h-[520px] overflow-y-auto pr-1">
+              {KINDERGARTENS.map((kg, i) => (
+                <div
+                  key={i}
+                  onClick={() => setSelectedKg(i)}
+                  className={`p-4 rounded-2xl border cursor-pointer transition-all ${
+                    selectedKg === i
+                      ? "bg-blue-50 border-blue-400 shadow-md"
+                      : "bg-white border-border hover:border-blue-300"
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-montserrat font-bold text-sm ${
+                      selectedKg === i ? "bg-blue-600 text-white" : "bg-blue-100 text-blue-600"
+                    }`}>
+                      {i + 1}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm text-foreground leading-snug">{kg.name}</p>
+                      <p className="text-muted-foreground text-xs mt-1 flex items-center gap-1">
+                        <Icon name="MapPin" size={11} /> {kg.address}
+                      </p>
+                      <p className="text-muted-foreground text-xs flex items-center gap-1">
+                        <Icon name="Phone" size={11} /> {kg.phone}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Карта */}
+            <div className="lg:col-span-2 rounded-3xl overflow-hidden shadow-md border border-border" style={{ height: 520 }}>
+              <div ref={mapRef} style={{ width: "100%", height: "100%" }} />
+            </div>
+          </div>
+
+          {selectedKg !== null && (
+            <div className="mt-6 bg-blue-50 border border-blue-200 rounded-2xl p-5 flex items-center gap-4">
+              <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl">🏫</span>
+              </div>
+              <div>
+                <p className="font-montserrat font-bold text-blue-700">{KINDERGARTENS[selectedKg].name}</p>
+                <p className="text-sm text-muted-foreground">{KINDERGARTENS[selectedKg].address} · {KINDERGARTENS[selectedKg].phone}</p>
+              </div>
+              <button onClick={() => setSelectedKg(null)} className="ml-auto text-muted-foreground hover:text-foreground">
+                <Icon name="X" size={18} />
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer className="bg-foreground text-background py-12">
         <div className="max-w-7xl mx-auto px-4">
@@ -508,7 +629,7 @@ export default function Index() {
                   className="h-10 w-auto object-contain brightness-0 invert"
                 />
               </div>
-              <p className="text-background/60 text-sm">© 2025 · Официальный информационный портал</p>
+              <p className="text-background/60 text-sm">© 2026 · Официальный информационный портал · Тамбов</p>
             </div>
             <div className="flex gap-6 text-sm text-background/70">
               {NAV_ITEMS.map(item => (
