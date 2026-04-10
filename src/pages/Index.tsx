@@ -262,16 +262,22 @@ export default function Index() {
 
         <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-32">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-blue-600/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 animate-fade-in-up">
-              <span className="text-lg">🇷🇺</span>
-              <span className="text-blue-700 font-medium text-sm">Официальный портал</span>
+            <div className="flex flex-wrap gap-2 mb-6 animate-fade-in-up">
+              <div className="inline-flex items-center gap-2 bg-blue-600/10 backdrop-blur-sm rounded-full px-4 py-2">
+                <span className="text-lg">🇷🇺</span>
+                <span className="text-blue-700 font-medium text-sm">Официальный портал</span>
+              </div>
+              <div className="inline-flex items-center gap-2 bg-pink-100 rounded-full px-4 py-2">
+                <span className="text-lg">📍</span>
+                <span className="text-pink-700 font-semibold text-sm">Тамбовская область</span>
+              </div>
             </div>
             <h1 className="font-montserrat font-black text-4xl md:text-6xl lg:text-7xl text-blue-700 leading-tight mb-6 animate-fade-in-up delay-100">
               Год<br />дошкольного<br />образования
-              <span className="text-pink-500"> 2025</span>
+              <span className="text-pink-500"> 2026</span>
             </h1>
             <p className="text-foreground/80 text-lg md:text-xl leading-relaxed mb-8 animate-fade-in-up delay-200 max-w-xl">
-              Вместе создаём счастливое детство для каждого ребёнка России. Новости, события, конкурсы и календарь мероприятий.
+              Тамбов вместе со всей Россией создаёт счастливое детство для каждого ребёнка. Новости, события, конкурсы и календарь мероприятий.
             </p>
             <div className="flex flex-wrap gap-3 animate-fade-in-up delay-300">
               <button
