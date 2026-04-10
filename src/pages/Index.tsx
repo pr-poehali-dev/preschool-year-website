@@ -255,39 +255,34 @@ export default function Index() {
 
       {/* HERO */}
       <section id="home" className="relative pt-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-400 via-amber-300 to-teal-400 opacity-90" />
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${HERO_IMAGE})` }}
         />
-        {/* Decorative blobs */}
-        <div className="absolute top-20 right-10 w-40 h-40 bg-yellow-300 rounded-full opacity-40 animate-float" />
-        <div className="absolute bottom-10 left-10 w-28 h-28 bg-teal-300 rounded-full opacity-40 animate-float" style={{animationDelay: '1.5s'}} />
-        <div className="absolute top-40 left-1/4 w-16 h-16 bg-rose-300 rounded-full opacity-50 animate-float" style={{animationDelay: '0.8s'}} />
 
         <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-32">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 bg-blue-600/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 animate-fade-in-up">
               <span className="text-lg">🇷🇺</span>
-              <span className="text-white font-medium text-sm">Официальный портал</span>
+              <span className="text-blue-700 font-medium text-sm">Официальный портал</span>
             </div>
-            <h1 className="font-montserrat font-black text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 animate-fade-in-up delay-100">
+            <h1 className="font-montserrat font-black text-4xl md:text-6xl lg:text-7xl text-blue-700 leading-tight mb-6 animate-fade-in-up delay-100">
               Год<br />дошкольного<br />образования
-              <span className="text-amber-200"> 2025</span>
+              <span className="text-pink-500"> 2025</span>
             </h1>
-            <p className="text-white/90 text-lg md:text-xl leading-relaxed mb-8 animate-fade-in-up delay-200 max-w-xl">
+            <p className="text-foreground/80 text-lg md:text-xl leading-relaxed mb-8 animate-fade-in-up delay-200 max-w-xl">
               Вместе создаём счастливое детство для каждого ребёнка России. Новости, события, конкурсы и календарь мероприятий.
             </p>
             <div className="flex flex-wrap gap-3 animate-fade-in-up delay-300">
               <button
                 onClick={() => scrollTo("news")}
-                className="bg-white text-orange-600 font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                className="bg-blue-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
               >
                 Новости и события
               </button>
               <button
                 onClick={() => scrollTo("calendar")}
-                className="bg-white/20 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-full border border-white/40 hover:bg-white/30 transition-all"
+                className="bg-white/70 backdrop-blur-sm text-blue-700 font-semibold px-6 py-3 rounded-full border border-blue-200 hover:bg-white transition-all"
               >
                 📅 Календарь
               </button>
