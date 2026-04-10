@@ -269,7 +269,7 @@ export default function Index() {
               </div>
               <div className="inline-flex items-center gap-2 bg-pink-100 rounded-full px-4 py-2">
                 <span className="text-lg">📍</span>
-                <span className="text-pink-700 font-semibold text-sm">Тамбовская область</span>
+                <span className="text-pink-700 font-semibold text-sm">город Тамбов</span>
               </div>
             </div>
             <h1 className="font-montserrat font-black text-4xl md:text-6xl lg:text-7xl text-blue-700 leading-tight mb-6 animate-fade-in-up delay-100">
@@ -277,7 +277,7 @@ export default function Index() {
               <span className="text-pink-500"> 2026</span>
             </h1>
             <p className="text-foreground/80 text-lg md:text-xl leading-relaxed mb-8 animate-fade-in-up delay-200 max-w-xl">
-              Тамбов вместе со всей Россией создаёт счастливое детство для каждого ребёнка. Новости, события, конкурсы и календарь мероприятий.
+              Тамбов вместе со всей страной создаёт счастливое детство для каждого ребёнка. Новости, события, конкурсы и календарь мероприятий.
             </p>
             <div className="flex flex-wrap gap-3 animate-fade-in-up delay-300">
               <button
